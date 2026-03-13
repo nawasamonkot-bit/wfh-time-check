@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ระบบลงเวลา WFH</title>
+
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+font-family: Arial, sans-serif;
+background:#f0f2f5;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.container{
+background:white;
+padding:40px;
+border-radius:10px;
+width:400px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+h2{
+text-align:center;
+margin-bottom:10px;
+}
+
+.clock{
+text-align:center;
+font-size:22px;
+font-weight:bold;
+color:#0c1398;
+margin-bottom:20px;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0 15px 0;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#0c1398;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+</style>
+
+<script>
+
+function updateClock(){
+const now = new Date();
+
+const time =
+now.toLocaleTimeString("th-TH");
+
+const date =
+now.toLocaleDateString("th-TH");
+
+document.getElementById("clock").innerHTML =
+date + " " + time;
+}
+
+setInterval(updateClock,1000);
+
+</script>
+
+</head>
+
+<body onload="updateClock()">
+
+<div class="container">
+
+<h2>สำนักงานศึกษาธิการจังหวัดนครปฐม</h2>    
+
+<h2>ระบบลงเวลา WFH</h2>
+
+<div id="clock" class="clock"></div>
+
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSeyqpZ3g9E2rOzSQ2k7wFA_ejfDTiAN-oV_YZv87t9RZ2EmBQ/formResponse" method="POST">
+
+<input type="text" name="entry.1737534696" placeholder="ชื่อ">
+
+<select name="entry.591347954">
+<option value="กลุ่มอำนวยการ">กลุ่มอำนวยการ</option>
+<option value="กลุ่มบริหารงานบุคคล">กลุ่มบริหารงานบุคคล</option>
+<option value="กลุ่มนโยบายและแผน">กลุ่มนโยบายและแผน</option>
+<option value="กลุ่มพัฒนาการศึกษา">กลุ่มพัฒนาการศึกษา</option>
+<option value="กลุ่มนิเทศ ติดตาม และประเมินผล">กลุ่มนิเทศ ติดตาม และประเมินผล</option>
+<option value="กลุ่มส่งเสริมการศึกษาเอกชน">กลุ่มส่งเสริมการศึกษาเอกชน</option>
+<option value="กลุ่มลูกเสือ ยุวกาชาด และกิจการนักเรียน">กลุ่มลูกเสือ ยุวกาชาด และกิจการนักเรียน</option>
+<option value="หน่วยตรวจสอบภายใน">หน่วยตรวจสอบภายใน</option>
+</select>
+
+<select name="entry.1725961204">
+<option value="เข้างาน">เข้างาน</option>
+<option value="ออกงาน">ออกงาน</option>
+</select>
+
+<input type="hidden" name="draftResponse" value="[]">
+<input type="hidden" name="pageHistory" value="0">
+
+<button type="submit">บันทึกเวลา</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
