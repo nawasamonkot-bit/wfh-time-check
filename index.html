@@ -5,9 +5,11 @@
 <title>ระบบลงเวลา WFH</title>
 
 <style>
+
 *{
 box-sizing:border-box;
 }
+
 body{
 font-family: Arial, sans-serif;
 background:#f0f2f5;
@@ -22,7 +24,7 @@ margin:0;
 background:white;
 padding:40px;
 border-radius:10px;
-width:400px;
+width:600px;
 box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
@@ -39,7 +41,7 @@ color:#0c1398;
 margin-bottom:20px;
 }
 
-input,select{
+input{
 width:100%;
 padding:10px;
 margin:8px 0 15px 0;
@@ -47,19 +49,60 @@ border-radius:6px;
 border:1px solid #ccc;
 }
 
-button{
-width:100%;
+.group-title{
+font-weight:bold;
+margin-top:10px;
+}
+
+.radio-group{
+margin-bottom:15px;
+margin-left:5px;
+}
+
+.radio-group label{
+display:flex;
+align-items:center;
+gap:8px;
+padding:6px 0;
+cursor:pointer;
+font-size:15px;
+}
+
+.radio-group input[type="radio"]{
+width:auto;
+margin:0;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.btn{
+flex:1;
 padding:12px;
-background:#0c1398;
-color:white;
 border:none;
 border-radius:6px;
 font-size:16px;
+color:white;
 cursor:pointer;
 }
 
-button:hover{
-background:#0056b3;
+.checkin{
+background:#28a745;
+}
+
+.checkin:hover{
+background:#1e7e34;
+}
+
+.checkout{
+background:#dc3545;
+}
+
+.checkout:hover{
+background:#a71d2a;
 }
 
 </style>
@@ -69,17 +112,18 @@ background:#0056b3;
 function updateClock(){
 const now = new Date();
 
-const time =
-now.toLocaleTimeString("th-TH");
-
-const date =
-now.toLocaleDateString("th-TH");
+const time = now.toLocaleTimeString("th-TH");
+const date = now.toLocaleDateString("th-TH");
 
 document.getElementById("clock").innerHTML =
 date + " " + time;
 }
 
 setInterval(updateClock,1000);
+
+function setType(type){
+document.getElementById("type").value = type;
+}
 
 </script>
 
@@ -89,36 +133,77 @@ setInterval(updateClock,1000);
 
 <div class="container">
 
-<h2>สำนักงานศึกษาธิการจังหวัดนครปฐม</h2>    
-
+<h2>สำนักงานศึกษาธิการจังหวัดนครปฐม</h2>
 <h2>ระบบลงเวลา WFH</h2>
 
 <div id="clock" class="clock"></div>
 
 <form action="https://docs.google.com/forms/d/e/1FAIpQLSeyqpZ3g9E2rOzSQ2k7wFA_ejfDTiAN-oV_YZv87t9RZ2EmBQ/formResponse" method="POST">
 
-<input type="text" name="entry.1737534696" placeholder="ชื่อ">
+<input type="text" name="entry.1737534696" placeholder="ชื่อ" required>
 
-<select name="entry.591347954">
-<option value="กลุ่มอำนวยการ">กลุ่มอำนวยการ</option>
-<option value="กลุ่มบริหารงานบุคคล">กลุ่มบริหารงานบุคคล</option>
-<option value="กลุ่มนโยบายและแผน">กลุ่มนโยบายและแผน</option>
-<option value="กลุ่มพัฒนาการศึกษา">กลุ่มพัฒนาการศึกษา</option>
-<option value="กลุ่มนิเทศ ติดตาม และประเมินผล">กลุ่มนิเทศ ติดตาม และประเมินผล</option>
-<option value="กลุ่มส่งเสริมการศึกษาเอกชน">กลุ่มส่งเสริมการศึกษาเอกชน</option>
-<option value="กลุ่มลูกเสือ ยุวกาชาด และกิจการนักเรียน">กลุ่มลูกเสือ ยุวกาชาด และกิจการนักเรียน</option>
-<option value="หน่วยตรวจสอบภายใน">หน่วยตรวจสอบภายใน</option>
-</select>
+<div class="group-title">กลุ่มงาน</div>
 
-<select name="entry.1725961204">
-<option value="เข้างาน">เข้างาน</option>
-<option value="ออกงาน">ออกงาน</option>
-</select>
+<div class="radio-group">
+
+<label>
+<input type="radio" name="entry.591347954" value="กลุ่มอำนวยการ" required>
+กลุ่มอำนวยการ
+</label>
+
+<label>
+<input type="radio" name="entry.591347954" value="กลุ่มบริหารงานบุคคล">
+กลุ่มบริหารงานบุคคล
+</label>
+
+<label>
+<input type="radio" name="entry.591347954" value="กลุ่มนโยบายและแผน">
+กลุ่มนโยบายและแผน
+</label>
+
+<label>
+<input type="radio" name="entry.591347954" value="กลุ่มพัฒนาการศึกษา">
+กลุ่มพัฒนาการศึกษา
+</label>
+
+<label>
+<input type="radio" name="entry.591347954" value="กลุ่มนิเทศ ติดตาม และประเมินผล">
+กลุ่มนิเทศ ติดตาม และประเมินผล
+</label>
+
+<label>
+<input type="radio" name="entry.591347954" value="กลุ่มส่งเสริมการศึกษาเอกชน">
+กลุ่มส่งเสริมการศึกษาเอกชน
+</label>
+
+<label>
+<input type="radio" name="entry.591347954" value="กลุ่มลูกเสือ ยุวกาชาด และกิจการนักเรียน">
+กลุ่มลูกเสือ ยุวกาชาด และกิจการนักเรียน
+</label>
+
+<label>
+<input type="radio" name="entry.591347954" value="หน่วยตรวจสอบภายใน">
+หน่วยตรวจสอบภายใน
+</label>
+
+</div>
+
+<input type="hidden" id="type" name="entry.1725961204">
 
 <input type="hidden" name="draftResponse" value="[]">
 <input type="hidden" name="pageHistory" value="0">
 
-<button type="submit">บันทึกเวลา</button>
+<div class="buttons">
+
+<button class="btn checkin" onclick="setType('เข้างาน')">
+เข้างาน
+</button>
+
+<button class="btn checkout" onclick="setType('ออกงาน')">
+ออกงาน
+</button>
+
+</div>
 
 </form>
 
