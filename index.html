@@ -7,12 +7,10 @@
 
 <style>
 
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 body{
-font-family: Arial, sans-serif;
+font-family:Arial,sans-serif;
 background:#f0f2f5;
 display:flex;
 justify-content:center;
@@ -25,15 +23,12 @@ margin:0;
 background:white;
 padding:40px;
 border-radius:10px;
-width: 100%;
-max-width: 600px;
+width:100%;
+max-width:600px;
 box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
-h2{
-text-align:center;
-margin-bottom:10px;
-}
+h2{text-align:center;margin-bottom:10px;}
 
 .clock{
 text-align:center;
@@ -91,20 +86,19 @@ color:white;
 cursor:pointer;
 }
 
-.checkin{
-background:#28a745;
-}
+.checkin{background:#28a745;}
+.checkin:hover{background:#1e7e34;}
 
-.checkin:hover{
-background:#1e7e34;
-}
+.checkout{background:#dc3545;}
+.checkout:hover{background:#a71d2a;}
 
-.checkout{
-background:#dc3545;
-}
-
-.checkout:hover{
-background:#a71d2a;
+.success{
+text-align:center;
+font-size: larger;
+color:green;
+margin-top:50px;
+display:none;
+font-weight:bold;
 }
 
 </style>
@@ -112,19 +106,22 @@ background:#a71d2a;
 <script>
 
 function updateClock(){
-const now = new Date();
+const now=new Date();
+const time=now.toLocaleTimeString("th-TH");
+const date=now.toLocaleDateString("th-TH");
 
-const time = now.toLocaleTimeString("th-TH");
-const date = now.toLocaleDateString("th-TH");
-
-document.getElementById("clock").innerHTML =
-date + " " + time;
+document.getElementById("clock").innerHTML=date+" "+time;
 }
 
 setInterval(updateClock,1000);
 
 function setType(type){
-document.getElementById("type").value = type;
+document.getElementById("type").value=type;
+}
+
+function formSubmitted(){
+document.getElementById("success").style.display="block";
+document.getElementById("timeForm").reset();
 }
 
 </script>
@@ -140,7 +137,13 @@ document.getElementById("type").value = type;
 
 <div id="clock" class="clock"></div>
 
-<form action="https://docs.google.com/forms/d/e/1FAIpQLSffRvKomxscBYg53uIRFtE3H0ubDRcE0t_6EiYoJMBmwp772w/formResponse" method="POST">
+<!-- iframe ซ่อน -->
+<iframe name="hidden_iframe" style="display:none;" onload="formSubmitted()"></iframe>
+
+<form id="timeForm"
+action="https://docs.google.com/forms/d/e/1FAIpQLSffRvKomxscBYg53uIRFtE3H0ubDRcE0t_6EiYoJMBmwp772w/formResponse"
+method="POST"
+target="hidden_iframe">
 
 <input type="text" name="entry.1482652833" placeholder="ชื่อ-สกุล" required>
 
@@ -152,9 +155,9 @@ document.getElementById("type").value = type;
 <input type="radio" name="entry.798335643" value="ผู้บริหาร" required>
 ผู้บริหาร
 </label>
-  
-<label>  
-<input type="radio" name="entry.798335643" value="กลุ่มอำนวยการ" required>
+
+<label>
+<input type="radio" name="entry.798335643" value="กลุ่มอำนวยการ">
 กลุ่มอำนวยการ
 </label>
 
@@ -202,14 +205,18 @@ document.getElementById("type").value = type;
 
 <div class="buttons">
 
-<button class="btn checkin" onclick="setType('เข้างาน')">
+<button type="submit" class="btn checkin" onclick="setType('เข้างาน')">
 เข้างาน
 </button>
 
-<button class="btn checkout" onclick="setType('ออกงาน')">
+<button type="submit" class="btn checkout" onclick="setType('ออกงาน')">
 ออกงาน
 </button>
 
+</div>
+
+<div id="success" class="success">
+✓ บันทึกเวลาเรียบร้อยแล้ว
 </div>
 
 </form>
@@ -218,6 +225,3 @@ document.getElementById("type").value = type;
 
 </body>
 </html>
-
-
-
